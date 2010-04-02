@@ -6,7 +6,7 @@ acts_as_voteable.
 
 Install =======
 
-    script/plugin install git://github.com/nabewise/hanging_chad
+    script/plugin install git://github.com/nabewise/hanging_chad.git
 
     script/generate hanging_chad
 
