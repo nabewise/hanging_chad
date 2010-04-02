@@ -1,0 +1,66 @@
+HangingChad ===========
+
+HangingChad is a voting plugin for Rails.  It solves a lot of issues I had with
+acts_as_voteable.
+
+
+Install =======
+
+    script/plugin install git://github.com/nabewise/hanging_chad
+
+    script/generate hanging_chad
+
+The generator creates the Vote and VoteTotal models which keep track of the
+votes
+
+
+Usage =====
+
+To set up a model that can be voted for just use 'has_votes'
+
+    class Review < ActiveRecord::Base 
+      has_votes 
+    end
+
+HangingChad supports models having votes for multiple named attributes
+    
+    class Comment < ActiveRecord::Base 
+      has_votes_for :insightfulness
+      has_votes_for :controversy 
+    end
+
+Recording a vote for a Review would work like
+
+    @review.record_vote(user, true)
+
+or
+
+    @review.record_vote(user, false)
+
+Recording a vote for a Comment would work like
+
+    @comment.record_vote(user, true, :insightfulness)
+    
+Other methods of interest are
+
+Instance Methods:
+
+total_votes(kind=nil) -- number of votes aye_votes(kind=nil) -- number of aye
+  votes 
+nay_votes(kind=nil) -- number of nay votes 
+percent_aye_votes(kind=nil)
+percent_nay_votes(kind=nil)
+
+vote_from_user(user, kind=nil) -- true = user has voted aye, false = user has
+  voted nay, nil = user has not voted 
+user_voted?(user, kind=nil) -- has the user voted?
+
+Class Methods:
+
+sort_by_votes(kind=nil) -- returns collection sorted by votes
+include_votes_by_user(user) -- returns a collection with all the users votes
+  joined in to prevent excess database queries on vote_from_user or user_voted?
+  (useful for displaying lists of things with the current_user's votes visible).
+
+
+Copyright (c) 2010 Ben Hughes, released under the MIT license
