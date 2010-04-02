@@ -1,10 +1,12 @@
-HangingChad ===========
+HangingChad 
+===========
 
 HangingChad is a voting plugin for Rails.  It solves a lot of issues I had with
 acts_as_voteable.
 
 
-Install =======
+Install 
+=======
 
     script/plugin install git://github.com/nabewise/hanging_chad.git
 
@@ -14,7 +16,8 @@ The generator creates the Vote and VoteTotal models which keep track of the
 votes
 
 
-Usage =====
+Usage 
+=====
 
 To set up a model that can be voted for just use 'has_votes'
 
